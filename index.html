@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sarthak Mitra - Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <h1>Sarthak Mitra</h1>
+    <div class="nav-links">
+      <button onclick="showSection('about')">About</button>
+      <button onclick="showSection('talents')">Talents</button>
+      <button onclick="showSection('chess')">Chess</button>
+    </div>
+  </div>
+
+  <div class="section" id="about">
+    <h2>About Sarthak</h2>
+    <p>
+      Sarthak Mitra is a dedicated student from <strong>India</strong>, studying in <strong>Grade 7</strong> at <em>The Future Foundation School</em>. Known for his curiosity and leadership, he combines excellence in academics with a passion for sports and games.
+    </p>
+  </div>
+
+  <div class="section hidden" id="talents">
+    <h2>Talents</h2>
+    <div class="cards" id="talentCards">
+      <div class="card" onclick="showTalentDetail('football')">⚽ Football</div>
+      <div class="card" onclick="showTalentDetail('cricket')">🏏 Cricket</div>
+      <div class="card" onclick="showTalentDetail('tt')">🏓 Table Tennis</div>
+      <div class="card" onclick="showTalentDetail('chess')">♟️ Chess</div>
+      <div class="card" onclick="showTalentDetail('academics')">📘 Academics</div>
+    </div>
+
+    <div id="talentDetails" class="hidden">
+      <h3 id="talentTitle"></h3>
+      <p id="talentDescription"></p>
+      <button class="glow-button" onclick="backToTalents()">← Back to Talents</button>
+    </div>
+  </div>
+
+  <div class="section hidden" id="chess">
+    <h2>Chess Master</h2>
+    <p>
+      Sarthak holds an official <strong>FIDE rating of 1435</strong>, a remarkable accomplishment showcasing his deep thinking, focus, and competitive edge. He plays both classical and rapid formats with brilliant endgame skills.
+    </p>
+    <button class="glow-button" onclick="showCongrats()">🎉 Congratulate</button>
+    <p id="congratsMsg" class="hidden">👏 Way to go, Sarthak! You're a true champion.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Sarthak Mitra. Crafted with 💙</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
