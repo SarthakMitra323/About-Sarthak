@@ -1,13 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fade');
+  // Scroll reveal animations using JS
+  const revealElements = document.querySelectorAll('section, .glass-card');
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    revealElements.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 100) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.transition = 'all 0.8s ease';
       }
     });
-  }, { threshold: 0.2 });
+  }
 
-  document.querySelectorAll('.glass-card').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
 
   // Mobile navigation toggle
   const hamburger = document.getElementById('hamburger');
@@ -42,49 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   typeWriter();
 
-  // Animated background particles
-  const canvas = document.createElement('canvas');
-  canvas.id = 'bg-particles';
-  document.body.prepend(canvas);
-
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  for (let i = 0; i < 50; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5
-    });
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(255,255,255,0.6)';
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    });
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  // Nexus AI glowing button pulse
-  const nexusBtn = document.querySelector('#nexus .btn');
-  if (nexusBtn) {
-    nexusBtn.style.animation = 'pulseGlow 2s infinite';
-  }
+  // Initial hidden state for reveal elements
+  revealElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+  });
 });
