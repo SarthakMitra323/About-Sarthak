@@ -1,60 +1,90 @@
-function showSection(id) {
-  const sections = document.querySelectorAll(".section");
-  sections.forEach(section => section.classList.add("hidden"));
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade');
+      }
+    });
+  }, { threshold: 0.2 });
 
-  const activeSection = document.getElementById(id);
-  if (activeSection) {
-    activeSection.classList.remove("hidden");
+  document.querySelectorAll('.glass-card').forEach(el => observer.observe(el));
+
+  // Mobile navigation toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      navLinks.classList.remove('active');
+    });
+  });
+
+  // Typing animation for tagline
+  const tagline = document.querySelector('.hero-content p');
+  const text = tagline.textContent;
+  tagline.textContent = '';
+  let index = 0;
+  function typeWriter() {
+    if (index < text.length) {
+      tagline.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeWriter, 70);
+    }
+  }
+  typeWriter();
+
+  // Animated background particles
+  const canvas = document.createElement('canvas');
+  canvas.id = 'bg-particles';
+  document.body.prepend(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  for (let i = 0; i < 50; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2 + 1,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5
+    });
   }
 
-  // Reset talents view if switching
-  if (id !== "talents") {
-    backToTalents();
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(animateParticles);
   }
-}
+  animateParticles();
 
-function showCongrats() {
-  document.getElementById("congratsMsg").classList.remove("hidden");
-}
-
-// Show About by default
-showSection('about');
-
-// Talent details
-const talentInfo = {
-  football: {
-    title: "⚽ Football",
-    description: "Sarthak plays as a powerful striker, known for his agility and quick decision-making. His teamwork and goal-scoring ability make him a valuable player on the field."
-  },
-  cricket: {
-    title: "🏏 Cricket",
-    description: "In cricket, Sarthak is both a skilled batsman and a sharp fielder. He can build innings with patience and hit big shots when needed."
-  },
-  tt: {
-    title: "🏓 Table Tennis",
-    description: "Sarthak's lightning-fast reflexes give him the edge in table tennis. He uses both spin and speed to outplay his opponents."
-  },
-  chess: {
-    title: "♟️ Chess",
-    description: "A thinker at heart, Sarthak excels at chess with a FIDE rating of 1435. He anticipates multiple moves ahead and plays with calm precision."
-  },
-  academics: {
-    title: "📘 Academics",
-    description: "Sarthak consistently ranks at the top of his class. His strongest subjects are science and math, where he shows deep understanding and curiosity."
+  // Nexus AI glowing button pulse
+  const nexusBtn = document.querySelector('#nexus .btn');
+  if (nexusBtn) {
+    nexusBtn.style.animation = 'pulseGlow 2s infinite';
   }
-};
-
-function showTalentDetail(key) {
-  const detail = talentInfo[key];
-  if (detail) {
-    document.getElementById("talentCards").classList.add("hidden");
-    document.getElementById("talentDetails").classList.remove("hidden");
-    document.getElementById("talentTitle").textContent = detail.title;
-    document.getElementById("talentDescription").textContent = detail.description;
-  }
-}
-
-function backToTalents() {
-  document.getElementById("talentCards").classList.remove("hidden");
-  document.getElementById("talentDetails").classList.add("hidden");
-}
+});
