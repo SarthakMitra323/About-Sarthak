@@ -2,63 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sarthak Mitra - Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarthak Mitra</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="navbar">
-    <h1>Sarthak Mitra</h1>
-    <div class="nav-links">
-      <button onclick="showSection('about')">About</button>
-      <button onclick="showSection('talents')">Talents</button>
-      <button onclick="showSection('chess')">Chess</button>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Sarthak Mitra</div>
+      <div class="hamburger" id="hamburger">☰</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#nexus">Nexus AI</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1 class="animate-fade">Hi, I'm <span>Sarthak</span></h1>
+      <p class="animate-slide">Student | Chess Player | Sports Enthusiast</p>
+      <a href="#about" class="btn animate-scale">Explore</a>
     </div>
-  </div>
+  </header>
 
-  <div class="section" id="about">
-    <h2>About Sarthak</h2>
+  <section id="about" class="glass-card">
+    <h2>About Me</h2>
     <p>
-      Sarthak Mitra is a dedicated student from <strong>India</strong>, studying in <strong>Grade 7</strong> at <em>The Future Foundation School</em>. Known for his curiosity and leadership, he combines excellence in academics with a passion for sports and games.
+      I'm a Grade 7 student at The Future Foundation School. I balance academics and sports, with a passion for chess, football, cricket, table tennis, and more. My FIDE rating is 1435.
     </p>
-  </div>
+  </section>
 
-  <div class="section hidden" id="talents">
-    <h2>Talents</h2>
-    <div class="cards" id="talentCards">
-      <div class="card" onclick="showTalentDetail('football')">⚽ Football</div>
-      <div class="card" onclick="showTalentDetail('cricket')">🏏 Cricket</div>
-      <div class="card" onclick="showTalentDetail('tt')">🏓 Table Tennis</div>
-      <div class="card" onclick="showTalentDetail('chess')">♟️ Chess</div>
-      <div class="card" onclick="showTalentDetail('academics')">📘 Academics</div>
+  <section id="skills" class="glass-card">
+    <h2>Skills & Interests</h2>
+    <div class="skills-grid">
+      <div class="skill-card">♟ Chess (FIDE 1435)</div>
+      <div class="skill-card">⚽ Football</div>
+      <div class="skill-card">🏏 Cricket</div>
+      <div class="skill-card">🏓 Table Tennis</div>
+      <div class="skill-card">💻 Coding</div>
+      <div class="skill-card">🎨 Creativity</div>
     </div>
+  </section>
 
-    <div id="talentDetails" class="hidden">
-      <h3 id="talentTitle"></h3>
-      <p id="talentDescription"></p>
-      <button class="glow-button" onclick="backToTalents()">← Back to Talents</button>
-    </div>
-  </div>
-
-  <div class="section hidden" id="chess">
-    <h2>Chess Master</h2>
+  <section id="nexus" class="glass-card">
+    <h2>Nexus AI</h2>
     <p>
-      Sarthak holds an official <strong>FIDE rating of 1435</strong>, a remarkable accomplishment showcasing his deep thinking, focus, and competitive edge. He plays both classical and rapid formats with brilliant endgame skills.
+      Nexus AI is an open-source personal assistant with dual modes — <strong>Fast</strong> for quick, everyday use and <strong>Pro</strong> for powerful reasoning and coding support. It has a sleek design and secure authentication, created by ConnectSphere, a visionary team of 12-year-old innovators from Bengal, India: <strong>Sarthak Mitra</strong>, <strong>Aishik Mitra</strong>, and <strong>Mitadru Bhattacharya</strong>.
     </p>
-    <button class="glow-button" onclick="showCongrats()">🎉 Congratulate</button>
-    <p id="congratsMsg" class="hidden">👏 Way to go, Sarthak! You're a true champion.</p>
-  </div>
+    <a href="https://sarthakmitra323.github.io/Nexus-AI/" class="btn" target="_blank">Visit Nexus AI</a>
+  </section>
+
+  <section id="contact" class="glass-card">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:sarthak.mitra9@gmail.com">sarthak@example.com</a></p>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Sarthak Mitra. Crafted with 💙</p>
+    <p>© 2025 Sarthak Mitra | Designed with ❤️</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
 
 
-
-
+<footer>
+<p>© 2025 Sarthak Mitra | Designed with ❤️</p>
+</footer>
+</body>
+</html>
